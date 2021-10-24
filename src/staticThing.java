@@ -6,27 +6,31 @@ import java.awt.*;
 public class staticThing {
 
     private ImageView ImageView;
-    double longueur;
-    double largeur;
+    double rect_posX;
+    double rect_posY;
+    double rect_largeur;
+    double rect_hauteur;
+    double pos_in_fenetreX;
+    double pos_in_fenetreY;
 
-
-    public staticThing(String fileName, double longueur, double largeur){
-        Image spritesheet = new Image(fileName);
-        ImageView sprite = new ImageView(spritesheet);
-        sprite.setViewport(new Rectangle2D(20,0,65,100));
-        sprite.setX(200);
-        sprite.setY(300);
-        this.ImageView=sprite;
-        this.longueur=longueur;
-        this.largeur=largeur;
+    public staticThing(String fileName,double rect_posX, double rect_posY, double rect_largeur, double rect_hauteur,double pos_in_fenetreX, double pos_in_fenetreY){
+        Image ImageBackground = new Image(fileName);
+        ImageView imgBackground = new ImageView(ImageBackground);
+        imgBackground.setViewport(new Rectangle2D(rect_posX,rect_posY,rect_largeur,rect_hauteur));
+        imgBackground.setX(pos_in_fenetreX);
+        imgBackground.setY(pos_in_fenetreY);
+        this.ImageView=imgBackground;
+        this.rect_posX=rect_posX;
+        this.rect_posY=rect_posY;
+        this.pos_in_fenetreX=pos_in_fenetreX;
+        this.pos_in_fenetreY=pos_in_fenetreY;
+        this.rect_hauteur=rect_hauteur;
+        this.rect_largeur=rect_largeur;
     }
 
     public ImageView getImageView(){
         return ImageView;
     }
 
-    static public void main(String[] arg){
-        staticThing t = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",600,630);
-        System.out.println(t.getImageView());
-    }
 }
+

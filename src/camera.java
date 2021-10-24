@@ -1,6 +1,8 @@
 public class camera {
     private Integer X;
     private Integer Y;
+    Integer ONNE_ZE_POTO_LABAAAA;
+    Integer PutTheCiment;
 
     public camera (Integer X, Integer Y) {
         this.X = X;
