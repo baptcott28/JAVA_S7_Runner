@@ -1,3 +1,4 @@
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -35,31 +36,34 @@ public class Main extends Application {
         primaryStage.setScene(theScene);
         primaryStage.show();*/
 
-        //code 2 : test hero
-        /*Group root = new Group();
+        //code 2 : test update hero et superposition hero + desert (fonctionne)
+        Group root = new Group();
         Scene s = new Scene(root, 1000, 400, true);
 
-        Hero hero1 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 150, 1);
-        Hero hero2 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 200, 150, 2);
-        Hero hero3 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 300, 150, 3);
-        Hero hero4 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 400, 150, 4);
-        Hero hero5 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 500, 150, 5);
-        Hero hero6 = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 600, 150, 6);
-        root.getChildren().add(hero1.getImageView());
-        root.getChildren().add(hero2.getImageView());
-        root.getChildren().add(hero3.getImageView());
-        root.getChildren().add(hero4.getImageView());
-        root.getChildren().add(hero5.getImageView());
-        root.getChildren().add(hero6.getImageView());
+        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png",10,100,1);
+        staticThing back1 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,0);
+        staticThing back2 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,800);
+
+        /*for(Integer i=0;i<10;i++){
+            back1.updateBck1();
+        }*/
+        root.getChildren().add(back1.getImageView());
+        root.getChildren().add(back2.getImageView());
+        root.getChildren().add(hero.getImageView());
 
         primaryStage.setScene(s);
-        primaryStage.show();*/
+        primaryStage.show();
 
         //code 3 :test
-        Group root= new Group();
-        GameScene Gamescene = new GameScene(root,800,400,true,0,800,0,800,800);
+        /*Group root = new Group();
+        GameScene Gamescene = new GameScene(root, 800, 400, true);
+        root.getChildren().add(Gamescene.getBackgroundLeft().getImageView());
+        root.getChildren().add(Gamescene.getBackgroundRight().getImageView());
+        root.getChildren().add(Gamescene.getHero().getImageView());
         primaryStage.setScene(Gamescene);
-        primaryStage.show();
+        Gamescene.getTimer().handle(0);
+        Gamescene.getTimer().start();
+        primaryStage.show();*/
 
 
         /*// code 4 : test d'affichage backgroundRight et backgroundLeft
@@ -86,7 +90,25 @@ public class Main extends Application {
         root.getChildren().add(rectBasicTimeline);
         primaryStage.setScene(scene);
         primaryStage.show();*/
+
+        //code 6 : test update
+        /*Group root= new Group();
+        Scene scene = new Scene(root,1000,400);
+
+        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 150, 1);
+
+        Integer i=1;
+        for(i=1;i<6;i++){
+            hero.update();
+            root.getChildren().add(hero.getImageView());
+        }
+
+        primaryStage.setScene(scene);
+        primaryStage.show();*/
+
+
     }
+
 
     public static void main(String[] args) {
         launch(args);
