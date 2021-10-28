@@ -37,33 +37,36 @@ public class Main extends Application {
         primaryStage.show();*/
 
         //code 2 : test update hero et superposition hero + desert (fonctionne)
-        Group root = new Group();
+        /*Group root = new Group();
         Scene s = new Scene(root, 1000, 400, true);
 
         Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png",10,100,1);
         staticThing back1 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,0);
         staticThing back2 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,800);
 
-        /*for(Integer i=0;i<10;i++){
-            back1.updateBck1();
-        }*/
+        for(Integer i=0;i<10;i++){
+            back1.updateLeft();
+        }
+        back1.getImageView().setX(back1.getX_pos());
         root.getChildren().add(back1.getImageView());
         root.getChildren().add(back2.getImageView());
         root.getChildren().add(hero.getImageView());
 
         primaryStage.setScene(s);
-        primaryStage.show();
+        primaryStage.show();*/
 
         //code 3 :test
-        /*Group root = new Group();
+        Group root = new Group();
         GameScene Gamescene = new GameScene(root, 800, 400, true);
+
+        //root.getChildren().add(Gamescene.getImgDesertRight());
         root.getChildren().add(Gamescene.getBackgroundLeft().getImageView());
         root.getChildren().add(Gamescene.getBackgroundRight().getImageView());
         root.getChildren().add(Gamescene.getHero().getImageView());
         primaryStage.setScene(Gamescene);
         Gamescene.getTimer().handle(0);
         Gamescene.getTimer().start();
-        primaryStage.show();*/
+        primaryStage.show();
 
 
         /*// code 4 : test d'affichage backgroundRight et backgroundLeft
@@ -106,6 +109,33 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
+        //code 7 : test animation background
+        /*Group group = new Group();
+        Scene scene = new Scene(group, 800,400);
+
+        Rectangle r = new Rectangle(100,100,200,200);
+        r.setStroke(Color.GREEN);
+
+        Image imagedesert = new Image("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png");
+        ImageView imgDesert = new ImageView(imagedesert);
+        imgDesert.setViewport(new Rectangle2D(0,0,800,400));
+
+        group.getChildren().add(imgDesert);
+
+        AnimationTimer aT = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                if(imgDesert.getX()>-800){
+                    imgDesert.setX(imgDesert.getX()-1);
+                }else {
+                    imgDesert.setX(0);
+                }
+            }
+        };
+        aT.start();
+
+        primaryStage.setScene(scene);
+        primaryStage.show();*/
 
     }
 

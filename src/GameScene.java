@@ -16,46 +16,46 @@ import java.util.DoubleSummaryStatistics;
 
 
 public class GameScene extends Scene {
-    // on cree une scene qui s'appelle GameScene et on y introduit une camera
     private double largeurFenetreAffichage;
     private double hauteurFenetreAffichage;
     private staticThing BackgroundLeft;
     private staticThing BackgroundRight;
     private Hero hero;
-    Group group;
+    private AnimationTimer timer;
+    private ImageView imgDesertRight;
 
-
-
-    //camera Camera = new camera(200,200);
 
     public GameScene(Group group, double largeurFenetreAffichage, double hauteurFenetreAffichage, boolean b) {
         super(group,largeurFenetreAffichage,hauteurFenetreAffichage,b);
 
-        staticThing BackgroundRight = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,0);
-        staticThing BackgroundLeft = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,800);
+        staticThing BackgroundRight = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,800);
+        BackgroundRight.getImageView().setX(800);
+        staticThing BackgroundLeft = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,0);
 
         Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 230, 1);
 
         this.BackgroundLeft=BackgroundLeft;
         this.BackgroundRight=BackgroundRight;
         this.hero=hero;
-        this.group=group;
+        this.imgDesertRight=imgDesertRight;
 
-        timer.start();
-    }
+        AnimationTimer timer = new AnimationTimer() {
+            long time = 0;
 
-    AnimationTimer timer = new AnimationTimer() {
-        long time=0;
-        public void handle(long l){
-            if(l-time>80000000){
-                hero.update();
-                BackgroundLeft.updateBck1();
-                BackgroundRight.updateBck2();
-                time=l;
+            public void handle(long l) {
+                if (l - time > 80000000) {
+                    hero.update();
+                    BackgroundLeft.updateLeft();
+                    BackgroundRight.updateRight();
+                    time = l;
+                }
+
             }
-
-        }
+        };
+        timer.start();
+        this.timer=timer;
     };
+
 
     public staticThing getBackgroundLeft() {
         return BackgroundLeft;
@@ -63,6 +63,10 @@ public class GameScene extends Scene {
 
     public staticThing getBackgroundRight(){
         return BackgroundRight;
+    }
+
+    public ImageView getImgDesertRight(){
+        return imgDesertRight;
     }
 
     public Hero getHero(){
