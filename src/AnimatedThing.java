@@ -26,32 +26,37 @@ public class AnimatedThing {
 
     public void update(){
 
+        if(this.getImageView().getY()<250){
+            imageView.setViewport(new Rectangle2D(95,160,70,105));
+            this.getImageView().setY(this.getImageView().getY()+30);
+        }
+
         state=(state+1)%7;
-        if (state == 0) {
+        if ((this.getImageView().getY()>=250)&&(state == 0)) {
             state=state+1;
         }
 
-        if(state==1){
+        if((this.getImageView().getY()>=250)&&(state==1)){
             imageView.setViewport(new Rectangle2D(20,0,60,100));
         }
 
-        if(state==2){
+        if((this.getImageView().getY()>=250)&&(state==2)){
             imageView.setViewport(new Rectangle2D(95,0,70,100));
         }
 
-        if(state==3){
+        if((this.getImageView().getY()>=250)&&(state==3)){
             imageView.setViewport(new Rectangle2D(170,10,85,90));
         }
 
-        if(state==4){
+        if((this.getImageView().getY()>=250)&&(state==4)){
             imageView.setViewport(new Rectangle2D(270,10,65,90));
         }
 
-        if(state==5){
+        if((this.getImageView().getY()>=250)&&(state==5)){
             imageView.setViewport(new Rectangle2D(345,0,70,100));
         }
 
-        if(state==6){
+        if((this.getImageView().getY()>=250)&&(state==6)){
             imageView.setViewport(new Rectangle2D(425,15,80,85));
         }
     }

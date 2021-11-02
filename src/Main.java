@@ -3,21 +3,27 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
 
 public class Main extends Application {
 
+    private MouseButton mouse;
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -63,6 +69,10 @@ public class Main extends Application {
         root.getChildren().add(Gamescene.getBackgroundLeft().getImageView());
         root.getChildren().add(Gamescene.getBackgroundRight().getImageView());
         root.getChildren().add(Gamescene.getHero().getImageView());
+        root.getChildren().add(Gamescene.getCoeur1().getImageView());
+        root.getChildren().add(Gamescene.getCoeur2().getImageView());
+        root.getChildren().add(Gamescene.getCoeur3().getImageView());
+        root.getChildren().add(Gamescene.getMechant().getImageView());
         primaryStage.setScene(Gamescene);
         Gamescene.getTimer().handle(0);
         Gamescene.getTimer().start();
@@ -137,8 +147,37 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
-    }
+        /*//code8 : test event fonctionnel
 
+        BorderPane root = new BorderPane();
+        ToggleButton button = new ToggleButton("Click");
+        //MouseButton mouse = null;
+
+        final StringProperty btnText = button.textProperty();
+
+        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 150, 1);
+        
+        button.setOnAction((event) -> {    // lambda expression
+            ToggleButton source = (ToggleButton) event.getSource();
+            if(source.isSelected()) {
+                btnText.set("Clicked!");
+                hero.getImageView().setY(0);
+            } else {
+                btnText.set("Click!");
+                hero.getImageView().setY(300);
+            }
+        });
+        root.setCenter(hero.getImageView());
+        root.setBottom(button);
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(400);
+        primaryStage.show();*/
+
+
+
+    }
 
     public static void main(String[] args) {
         launch(args);
