@@ -10,10 +10,14 @@ public class AnimatedThing {
     private double posInFenetreY;
     private ImageView imageView;
     private Image image;
+    private Integer JumpOrder=0;
+    private double boostOrder=0;
 
 
     public AnimatedThing(String fileName,double posInFenetreX, double posInFenetreY, Integer state){
         this.state=state;
+        this.JumpOrder=JumpOrder;
+        this.boostOrder=boostOrder;
         Image heroimage = new Image(fileName);
         ImageView imghero= new ImageView(heroimage);
         imghero.setViewport(new Rectangle2D(20,0,60,100));
@@ -26,12 +30,24 @@ public class AnimatedThing {
 
     public void update(){
 
-        if(this.getImageView().getY()<250){
-            imageView.setViewport(new Rectangle2D(95,160,70,105));
-            this.getImageView().setY(this.getImageView().getY()+30);
+        //jump
+        if((JumpOrder==1)&&(this.getImageView().getY()>30)){
+            imageView.setViewport(new Rectangle2D(20,160,60,105));
+            this.getImageView().setY(this.getImageView().getY()-35);
         }
 
-        state=(state+1)%7;
+        // remise de JumpOrder a 0
+        if ((JumpOrder==1)&&(this.getImageView().getY() <= 30)) {
+            JumpOrder=0;
+        }
+
+        //gravity
+        if((JumpOrder==0)&&(this.getImageView().getY()<250)){
+            imageView.setViewport(new Rectangle2D(95,160,70,105));
+            this.getImageView().setY(this.getImageView().getY()+17);
+        }
+
+        //update run
         if ((this.getImageView().getY()>=250)&&(state == 0)) {
             state=state+1;
         }
@@ -59,14 +75,29 @@ public class AnimatedThing {
         if((this.getImageView().getY()>=250)&&(state==6)){
             imageView.setViewport(new Rectangle2D(425,15,80,85));
         }
+        state=(state+1)%7;
     }
 
     public ImageView getImageView(){
         return imageView;
     }
 
+    public void jump(){
+        this.JumpOrder=1;
+        System.out.println("JumpOrder="+JumpOrder);
+    }
+
+    public void boost(){
+        this.boostOrder=1;
+        System.out.println("boostorder="+boostOrder);
+    }
+
     public Image getImage(){
         return image;
+    }
+
+    public double getboostorder(){
+        return boostOrder;
     }
 
 }
