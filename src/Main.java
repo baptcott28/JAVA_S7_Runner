@@ -4,9 +4,11 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.property.StringProperty;
+import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
@@ -15,10 +17,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Main extends Application {
@@ -28,61 +33,110 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         primaryStage.setTitle("GameScene");
+        primaryStage.setResizable(false);
 
-        //code 1 test setup image
-        /*Group root = new Group();
-        Scene theScene = new Scene(root,600,636,true);
-        //set up d'une image
-        Image imageHero = new Image("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png");
-        ImageView imgHero = new ImageView(imageHero);
-        imgHero.setViewport(new Rectangle2D(20,0,60,100));
-        imgHero.setX(0);
-        imgHero.setY(0);
-        root.getChildren().add(imgHero);
-        primaryStage.setScene(theScene);
-        primaryStage.show();*/
-
-        //code 2 : test update hero et superposition hero + desert (fonctionne)
-        /*Group root = new Group();
-        Scene s = new Scene(root, 1000, 400, true);
-
-        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png",10,100,1);
-        staticThing back1 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,0);
-        staticThing back2 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,800,800);
-
-        for(Integer i=0;i<10;i++){
-            back1.updateLeft();
-        }
-        back1.getImageView().setX(back1.getX_pos());
-        root.getChildren().add(back1.getImageView());
-        root.getChildren().add(back2.getImageView());
-        root.getChildren().add(hero.getImageView());
-
-        primaryStage.setScene(s);
-        primaryStage.show();*/
 
         //code 3 :test
+
+        Group group1 = new Group();
+        StaticScene sceneIntro = new StaticScene(group1,800,400,true);
         Group root = new Group();
         GameScene Gamescene = new GameScene(root, 800, 400, true);
+        Group group2 = new Group();
+        StaticScene sceneFinale = new StaticScene(group2,800,400, true);
+        Group group3 = new Group();
+        StaticScene sceneCommand = new StaticScene(group3,800,400,true);
 
-        //root.getChildren().add(Gamescene.getImgDesertRight());
+        //sceneIntro
+        Button button1= new Button("Play");
+        button1.setOnAction(e -> primaryStage.setScene(Gamescene));
+        Button button4 = new Button("Command");
+        button4.setOnAction(e -> primaryStage.setScene(sceneCommand));
+        Label labelBienvenue = new Label("BIENVENUE", new Rectangle(300,600,1,1));
+        Label signature = new Label("Baptiste Cottu - 2021", new Rectangle(300,600,1,1));
+
+        group1.getChildren().add(sceneIntro.getBackground().getImageView());
+        group1.getChildren().add(sceneIntro.getHero().getImageView());
+        group1.getChildren().add(sceneIntro.getMechant().getImageView());
+
+        button1.setLayoutX(300);
+        button1.setLayoutY(200);
+        button4.setLayoutX(450);
+        button4.setLayoutY(200);
+
+        labelBienvenue.setLayoutX(320);
+        labelBienvenue.setLayoutY(50);
+        labelBienvenue.setFont(new Font("Playbill",50));
+        labelBienvenue.setTextFill(Color.RED);
+
+        signature.setFont(new Font("Playbill",25));
+        signature.setTextFill(Color.BLACK);
+        signature.setLayoutX(620);
+        signature.setLayoutY(370);
+
+        group1.getChildren().add(button1);
+        group1.getChildren().add(button4);
+        group1.getChildren().add(labelBienvenue);
+        group1.getChildren().add(signature);
+
+        // GameScene
         root.getChildren().add(Gamescene.getBackgroundLeft().getImageView());
         root.getChildren().add(Gamescene.getBackgroundRight().getImageView());
         root.getChildren().add(Gamescene.getHero().getImageView());
-        root.getChildren().add(Gamescene.getCoeur1().getImageView());
-        root.getChildren().add(Gamescene.getCoeur2().getImageView());
-        root.getChildren().add(Gamescene.getCoeur3().getImageView());
+        root.getChildren().add(Gamescene.getLife().getImageView());
         root.getChildren().add(Gamescene.getMechant().getImageView());
-        primaryStage.setScene(Gamescene);
         Gamescene.getTimer().handle(0);
         Gamescene.getTimer().start();
+
+        //SceneCommands
+        Button button3= new Button("Back to menu");
+        button3.setOnAction(e -> primaryStage.setScene(sceneIntro));
+
+        Label labelCommands = new Label("Commands",new Rectangle(300,600,1,1));
+        Label instructions = new Label("ESC : Pause\nUP : Jump\nRIGHT : Boost\nLEFT : Stop Boost", new Rectangle(300,600,1,1));
+        group3.getChildren().add(sceneCommand.getBackground().getImageView());
+        group3.getChildren().add(sceneCommand.getMechant().getImageView());
+        group3.getChildren().add(sceneCommand.getHero().getImageView());
+
+        button3.setLayoutX(600);
+        button3.setLayoutY(350);
+
+        labelCommands.setFont(new Font("Playbill",50));
+        labelCommands.setTextFill(Color.RED);
+        labelCommands.setLayoutX(320);
+        labelCommands.setLayoutY(20);
+
+        instructions.setLayoutY(145);
+        instructions.setLayoutX(340);
+        instructions.setFont(new Font("Playbill",25));
+        instructions.setTextFill(Color.RED);
+
+        group3.getChildren().add(button3);
+        group3.getChildren().add(labelCommands);
+        group3.getChildren().add(instructions);
+
+        //sceneFinale
+        Button button2= new Button("Try again");
+        button2.setOnAction(e -> primaryStage.setScene(Gamescene));
+
+        Label GameOver = new Label("GAME OVER",new Rectangle(300,600,1,1));
+        group2.getChildren().add(sceneFinale.getBackground().getImageView());
+        group2.getChildren().add(sceneFinale.getMechant().getImageView());
+        group2.getChildren().add(sceneFinale.getHero().getImageView());
+
+        button2.setLayoutX(380);
+        button2.setLayoutY(200);
+
+        GameOver.setLayoutX(330);
+        GameOver.setLayoutY(100);
+        GameOver.setTextFill(Color.RED);
+        GameOver.setFont(new Font("Playbill",50));
+        group2.getChildren().add(button2);
+        group2.getChildren().add(GameOver);
+
+        primaryStage.setScene(sceneIntro);
         primaryStage.show();
 
-
-        /*// code 4 : test d'affichage backgroundRight et backgroundLeft
-        GameScene Gamescene = new GameScene(root,1000,400,true,0,800,0,400,800);
-        primaryStage.setScene(Gamescene);
-        primaryStage.show();*/
 
         /*// code 5 : exemple timeline
         Group root = new Group();
@@ -104,48 +158,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();*/
 
-        //code 6 : test update
-        /*Group root= new Group();
-        Scene scene = new Scene(root,1000,400);
-
-        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 150, 1);
-
-        Integer i=1;
-        for(i=1;i<6;i++){
-            hero.update();
-            root.getChildren().add(hero.getImageView());
-        }
-
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
-
-        //code 7 : test animation background
-        /*Group group = new Group();
-        Scene scene = new Scene(group, 800,400);
-
-        Rectangle r = new Rectangle(100,100,200,200);
-        r.setStroke(Color.GREEN);
-
-        Image imagedesert = new Image("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png");
-        ImageView imgDesert = new ImageView(imagedesert);
-        imgDesert.setViewport(new Rectangle2D(0,0,800,400));
-
-        group.getChildren().add(imgDesert);
-
-        AnimationTimer aT = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                if(imgDesert.getX()>-800){
-                    imgDesert.setX(imgDesert.getX()-1);
-                }else {
-                    imgDesert.setX(0);
-                }
-            }
-        };
-        aT.start();
-
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
 
         /*//code8 : test event fonctionnel
 
@@ -175,7 +187,97 @@ public class Main extends Application {
         primaryStage.setHeight(400);
         primaryStage.show();*/
 
+        //code 9 : test sceneIntro
+        /*Group group1 = new Group();
+        Group group2 = new Group();
+        Group group3 = new Group();
 
+        StaticScene sceneIntro = new StaticScene(group1,800,400,true);
+        StaticScene sceneFinale = new StaticScene(group2,800,400, true);
+        StaticScene sceneCommand = new StaticScene(group3,800,400,true);
+
+        //sceneIntro
+        Button button1= new Button("Play");
+        button1.setOnAction(e -> primaryStage.setScene(sceneFinale));
+        Button button4 = new Button("Command");
+        button4.setOnAction(e -> primaryStage.setScene(sceneCommand));
+        Label labelBienvenue = new Label("BIENVENUE", new Rectangle(300,600,1,1));
+        Label signature = new Label("Baptiste Cottu - 2021", new Rectangle(300,600,1,1));
+
+        group1.getChildren().add(sceneIntro.getBackground().getImageView());
+        group1.getChildren().add(sceneIntro.getHero().getImageView());
+        group1.getChildren().add(sceneIntro.getMechant().getImageView());
+
+        button1.setLayoutX(300);
+        button1.setLayoutY(200);
+        button4.setLayoutX(450);
+        button4.setLayoutY(200);
+
+        labelBienvenue.setLayoutX(320);
+        labelBienvenue.setLayoutY(50);
+        labelBienvenue.setFont(new Font("Playbill",50));
+        labelBienvenue.setTextFill(Color.RED);
+
+        signature.setFont(new Font("Playbill",25));
+        signature.setTextFill(Color.BLACK);
+        signature.setLayoutX(620);
+        signature.setLayoutY(370);
+
+        group1.getChildren().add(button1);
+        group1.getChildren().add(button4);
+        group1.getChildren().add(labelBienvenue);
+        group1.getChildren().add(signature);
+
+        //sceneFinale
+        Button button2= new Button("Try again");
+        button2.setOnAction(e -> primaryStage.setScene(sceneIntro));
+
+        Label GameOver = new Label("GAME OVER",new Rectangle(300,600,1,1));
+        group2.getChildren().add(sceneFinale.getBackground().getImageView());
+        group2.getChildren().add(sceneFinale.getMechant().getImageView());
+        group2.getChildren().add(sceneFinale.getHero().getImageView());
+
+        button2.setLayoutX(380);
+        button2.setLayoutY(200);
+
+        GameOver.setLayoutX(330);
+        GameOver.setLayoutY(100);
+        GameOver.setTextFill(Color.RED);
+        GameOver.setFont(new Font("Playbill",50));
+        group2.getChildren().add(button2);
+        group2.getChildren().add(GameOver);
+
+        //scene de commandes
+        Button button3= new Button("Back to menu");
+        button3.setOnAction(e -> primaryStage.setScene(sceneIntro));
+
+        Label labelCommands = new Label("Commands",new Rectangle(300,600,1,1));
+        Label instructions = new Label("UP : Jump\nRIGHT : Boost\nLEFT : Stop Boost", new Rectangle(300,600,1,1));
+        group3.getChildren().add(sceneCommand.getBackground().getImageView());
+        group3.getChildren().add(sceneCommand.getMechant().getImageView());
+        group3.getChildren().add(sceneCommand.getHero().getImageView());
+
+        button3.setLayoutX(600);
+        button3.setLayoutY(350);
+
+        labelCommands.setFont(new Font("Playbill",50));
+        labelCommands.setTextFill(Color.RED);
+        labelCommands.setLayoutX(320);
+        labelCommands.setLayoutY(20);
+
+        instructions.setLayoutY(160);
+        instructions.setLayoutX(340);
+        instructions.setFont(new Font("Playbill",25));
+        instructions.setTextFill(Color.RED);
+
+        group3.getChildren().add(button3);
+        group3.getChildren().add(labelCommands);
+        group3.getChildren().add(instructions);
+
+
+
+        primaryStage.setScene(sceneCommand);
+        primaryStage.show();*/
 
     }
 

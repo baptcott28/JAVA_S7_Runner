@@ -12,6 +12,7 @@ public class AnimatedThing {
     private Image image;
     private Integer JumpOrder=0;
     private double boostOrder=0;
+    private Integer lifeNumber=5;
 
 
     public AnimatedThing(String fileName,double posInFenetreX, double posInFenetreY, Integer state){
@@ -25,6 +26,7 @@ public class AnimatedThing {
         imghero.setY(posInFenetreY);
         this.imageView=imghero;
         this.image=heroimage;
+        this.lifeNumber=lifeNumber;
 
     }
 
@@ -92,6 +94,11 @@ public class AnimatedThing {
         System.out.println("boostorder="+boostOrder);
     }
 
+    public void stopBoost(){
+        boostOrder=0;
+        System.out.println("boostorder="+boostOrder);
+    }
+
     public Image getImage(){
         return image;
     }
@@ -100,4 +107,11 @@ public class AnimatedThing {
         return boostOrder;
     }
 
+    public Integer getLifeNumber(){
+        return lifeNumber;
+    }
+
+    public void UpdateLifeNumber(){
+        this.lifeNumber--;
+    }
 }
