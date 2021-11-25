@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.input.MouseEvent;
@@ -35,13 +36,50 @@ public class Main extends Application {
         primaryStage.setTitle("GameScene");
         primaryStage.setResizable(false);
 
+        // code 2 test de la scene fin
+
+        /*Group groupFin = new Group();
+        StaticScene fin = new StaticScene(groupFin,800,400,true);
+        Text Scoretext = new Text("score");
+        Label words = new Label("Seems you get arrested cowboy");
+        words.setLayoutX(400);
+        words.setLayoutY(140);
+        words.setFont(new Font("Playbill",50));
+        words.setTextFill(Color.BLACK);
+
+        Label tryAgain = new Label("Re run to try again");
+        tryAgain.setLayoutX(650);
+        tryAgain.setLayoutY(360);
+        tryAgain.setFont(new Font("Playbill",25));
+        tryAgain.setTextFill(Color.BLACK);
+
+        groupFin.getChildren().add(fin.getBackground().getImageView());
+        groupFin.getChildren().add(fin.getHero().getImageView());
+        groupFin.getChildren().add(fin.getMechant().getImageView());
+        groupFin.getChildren().add(words);
+        groupFin.getChildren().add(tryAgain);
+
+        staticThing etoile = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\etoile_sheriff.png",0,0,465,512,100,100);
+        etoile.getImageView().setFitWidth(325);
+        etoile.getImageView().setFitHeight(325);
+        etoile.getImageView().setX(60);
+        etoile.getImageView().setY(5);
+        groupFin.getChildren().add(etoile.getImageView());
+
+        Scoretext.setX(300);
+        Scoretext.setY(350);
+        groupFin.getChildren().add(Scoretext);
+
+        primaryStage.setScene(fin);
+        primaryStage.show();*/
+
 
         //code 3 :test
 
         Group group1 = new Group();
         StaticScene sceneIntro = new StaticScene(group1,800,400,true);
         Group root = new Group();
-        GameScene Gamescene = new GameScene(root, 800, 400, true);
+        GameScene Gamescene = new GameScene(root, 800, 400, true,primaryStage);
         Group group2 = new Group();
         StaticScene sceneFinale = new StaticScene(group2,800,400, true);
         Group group3 = new Group();
@@ -85,6 +123,7 @@ public class Main extends Application {
         root.getChildren().add(Gamescene.getHero().getImageView());
         root.getChildren().add(Gamescene.getLife().getImageView());
         root.getChildren().add(Gamescene.getMechant().getImageView());
+        root.getChildren().add(Gamescene.getScoretext());
         Gamescene.getTimer().handle(0);
         Gamescene.getTimer().start();
 
@@ -115,24 +154,6 @@ public class Main extends Application {
         group3.getChildren().add(labelCommands);
         group3.getChildren().add(instructions);
 
-        //sceneFinale
-        Button button2= new Button("Try again");
-        button2.setOnAction(e -> primaryStage.setScene(Gamescene));
-
-        Label GameOver = new Label("GAME OVER",new Rectangle(300,600,1,1));
-        group2.getChildren().add(sceneFinale.getBackground().getImageView());
-        group2.getChildren().add(sceneFinale.getMechant().getImageView());
-        group2.getChildren().add(sceneFinale.getHero().getImageView());
-
-        button2.setLayoutX(380);
-        button2.setLayoutY(200);
-
-        GameOver.setLayoutX(330);
-        GameOver.setLayoutY(100);
-        GameOver.setTextFill(Color.RED);
-        GameOver.setFont(new Font("Playbill",50));
-        group2.getChildren().add(button2);
-        group2.getChildren().add(GameOver);
 
         primaryStage.setScene(sceneIntro);
         primaryStage.show();
