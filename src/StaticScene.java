@@ -1,13 +1,13 @@
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
-import javax.swing.text.html.ImageView;
-
 public class StaticScene extends Scene {
 
     private Hero hero2;
     private staticThing mechant2;
     private staticThing background3;
+
+    // Pour les scenes d'intro et de fin
 
     public StaticScene(Group group, double largeur_fenetre, double hauteur_fenetre,boolean b){
         super(group, largeur_fenetre,hauteur_fenetre,b);

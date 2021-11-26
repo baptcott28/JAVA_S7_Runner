@@ -1,8 +1,6 @@
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-import java.awt.*;
-import java.util.Random;
 
 public class staticThing {
 
@@ -74,28 +72,19 @@ public class staticThing {
 
 
     public void lifeUpdate(){
-        if(lifeState==0){
-            this.getImageView().setViewport(new Rectangle2D(0,12,233,31));
-        }
-        if (lifeState==1){
+        if (lifeState==0){
             this.getImageView().setViewport(new Rectangle2D(0,53,233,39));
         }
-        if(lifeState==2){
+        if(lifeState==1){
             this.getImageView().setViewport(new Rectangle2D(0,93,233,31));
         }
-        if(lifeState==3){
+        if(lifeState==2){
             this.getImageView().setViewport(new Rectangle2D(0,132,233,31));
         }
-        if(lifeState==4){
+        if(lifeState==3){
             this.getImageView().setViewport(new Rectangle2D(0,172,233,31));
         }
-        lifeState=(lifeState+1)%5;
-        System.out.println("lifeState="+lifeState);
+        lifeState=lifeState+1;
     }
-
-    public double getRect_posX() {
-        return rect_posX;
-    }
-
 }
 

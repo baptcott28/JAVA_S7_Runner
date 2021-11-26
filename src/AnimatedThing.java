@@ -1,13 +1,10 @@
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.awt.*;
 
 public class AnimatedThing {
 
     private Integer state;
-    private double posInFenetreX;
-    private double posInFenetreY;
     private ImageView imageView;
     private Image image;
     private Integer JumpOrder=0;
@@ -35,7 +32,7 @@ public class AnimatedThing {
         //jump
         if((JumpOrder==1)&&(this.getImageView().getY()>30)){
             imageView.setViewport(new Rectangle2D(20,160,60,105));
-            this.getImageView().setY(this.getImageView().getY()-35);
+            this.getImageView().setY(this.getImageView().getY()-45);
         }
 
         // remise de JumpOrder a 0
@@ -46,7 +43,7 @@ public class AnimatedThing {
         //gravity
         if((JumpOrder==0)&&(this.getImageView().getY()<250)){
             imageView.setViewport(new Rectangle2D(95,160,70,105));
-            this.getImageView().setY(this.getImageView().getY()+17);
+            this.getImageView().setY(this.getImageView().getY()+14);
         }
 
         //update run
@@ -86,21 +83,14 @@ public class AnimatedThing {
 
     public void jump(){
         this.JumpOrder=1;
-        System.out.println("JumpOrder="+JumpOrder);
     }
 
     public void boost(){
         this.boostOrder=1;
-        System.out.println("boostorder="+boostOrder);
     }
 
     public void stopBoost(){
         boostOrder=0;
-        System.out.println("boostorder="+boostOrder);
-    }
-
-    public Image getImage(){
-        return image;
     }
 
     public double getboostorder(){
