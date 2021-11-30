@@ -31,21 +31,21 @@ public class GameScene extends Scene {
         super(group,largeurFenetreAffichage,hauteurFenetreAffichage,b);
 
         //Etablissement des elements du jeu
-        staticThing BackgroundRight = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,0,800,400,800,0);
-        staticThing BackgroundLeft = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,0,800,400,0,0);
+        staticThing BackgroundRight = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\desert.png",0,0,800,400,800,0);
+        staticThing BackgroundLeft = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\desert.png",0,0,800,400,0,0);
 
-        Hero hero = new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 250, 1);
+        Hero hero = new Hero("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\heros.png", 100, 250, 1);
 
-        staticThing mechant = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\mechant.png",144,0,48,48,700,280);
+        staticThing mechant = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\mechant.png",144,0,48,48,700,280);
         mechant.getImageView().setFitHeight(80);
         mechant.getImageView().setFitWidth(80);
 
-        staticThing life = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\coeur_vie.png",0,0,233,43,0,0);
+        staticThing life = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\coeur_vie.png",0,0,233,43,0,0);
 
         // Scene de fin de jeu
         Group groupFin = new Group();
         Scene fin = new Scene(groupFin,800,400,true);
-        staticThing etoile = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\etoile_sheriff.png",0,0,450,500,100,100);
+        staticThing etoile = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\etoile_sheriff.png",0,0,450,500,100,100);
         etoile.getImageView().setFitWidth(200);
         etoile.getImageView().setFitHeight(200);
         groupFin.getChildren().add(etoile.getImageView());
@@ -128,7 +128,7 @@ public class GameScene extends Scene {
                                         groupFin.getChildren().add(words);
                                         groupFin.getChildren().add(tryAgain);
 
-                                        staticThing etoile = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\etoile_sheriff.png", 0, 0, 465, 512, 100, 100);
+                                        staticThing etoile = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\etoile_sheriff.png", 0, 0, 465, 512, 100, 100);
                                         etoile.getImageView().setFitWidth(325);
                                         etoile.getImageView().setFitHeight(325);
                                         etoile.getImageView().setX(60);

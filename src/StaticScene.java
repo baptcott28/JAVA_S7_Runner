@@ -12,11 +12,11 @@ public class StaticScene extends Scene {
     public StaticScene(Group group, double largeur_fenetre, double hauteur_fenetre,boolean b){
         super(group, largeur_fenetre,hauteur_fenetre,b);
 
-        staticThing background3= new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\desert.png",0,0,800,400,0,0);
+        staticThing background3= new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\desert.png",0,0,800,400,0,0);
 
-        Hero hero2= new Hero("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\heros.png", 100, 250, 1);
+        Hero hero2= new Hero("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\heros.png", 100, 250, 1);
 
-        staticThing mechant2 = new staticThing("C:\\Users\\bapti\\Documents\\COURS ENSEA\\2A\\JAVA\\mechant.png",144,0,48,48,700,260);
+        staticThing mechant2 = new staticThing("C:\\Users\\bapti\\IdeaProjects\\Runner\\images\\mechant.png",144,0,48,48,700,260);
         mechant2.getImageView().setFitHeight(100);
         mechant2.getImageView().setFitWidth(100);
 
